@@ -1,6 +1,6 @@
 # home
 
-webiste for chrisdunkley.net, built with [roots](http://roots.cx)
+website for chrisdunkley.net, built with [roots](http://roots.cx)
 
 ### Setup
 
