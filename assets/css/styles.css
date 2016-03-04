@@ -1,0 +1,12 @@
+@import "assets/css/settings";
+
+
+
+body {
+	background-color: $color-bg;
+}
+
+h3 {
+	color: $color-main;
+}
+

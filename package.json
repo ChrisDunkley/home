@@ -1,0 +1,17 @@
+{
+  "name": "home",
+  "description": "webiste for chrisdunkley.net, built with roots",
+  "dependencies": {
+    "autoprefixer": "^6.3.3",
+    "axis": "0.5.x",
+    "coffee-script": "^1.0.0",
+    "css-pipeline": "0.3.x",
+    "jade": "^1.0.0",
+    "js-pipeline": "0.2.x",
+    "jstransformer-marked": "^1.0.0",
+    "marked": "0.3.x",
+    "postcss": "^5.0.18",
+    "precss": "^1.4.0",
+    "rupture": "0.6.x"
+  }
+}
