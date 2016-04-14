@@ -6,7 +6,7 @@ css_pipeline = require 'css-pipeline'
 precss       = require 'precss'
 
 module.exports =
-  ignores: ['readme.md','**/layout.*', '**/_*', '.gitignore', 'ship.*conf', 'project.sublime-project']
+  ignores: ['readme.md','**/layout.*', '**/_*', '.gitignore', '.gitattributes', 'ship.*conf', 'project.sublime-project']
 
   extensions: [
     js_pipeline(files: 'assets/js/*.coffee'),
@@ -17,7 +17,7 @@ module.exports =
     sourcemap: true
 
   jade:
-    pretty: true
+    pretty: false
 
   postcss:
     use:[precss(),autoprefixer()]

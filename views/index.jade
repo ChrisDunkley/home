@@ -1,6 +1,42 @@
 extends layout
 
+block variables
+	- var page_title = "Home"
+
+block header
+	script(src="js/wufoo.js")
+
 block content
-	h3 Welcome to roots!
-	:marked
-		Find tutorials and documentation at http://roots.cx : )
+
+	header
+		img(src="img/logo.png")
+	
+	#main
+		h1 CHRIS DUNKLEY
+
+		section#details
+			p.prominent Chris Dunkley is a <strong>multidisciplinary designer</strong> based in <strong>Melbourne, Australia</strong>.
+
+			p.spacer I specialise in
+			ul.skills
+				li Web design + development
+				li Graphic design
+				li Video editing
+
+		section#elsewhere
+			h2 Find me elsewhere
+
+			ul.links
+				li
+					a.icon-linkedin(href="https://www.linkedin.com/in/chrisjdunkley" alt="Linkedin") Linkedin
+				li
+					a.icon-twitter(href="http://www.twitter.com/ChrisDunkley" alt="Twitter") Twitter
+				li
+					a.icon-twitter(href="http://www.facebook.com/" alt="Twitter") Facebook
+		
+		section#contact
+			h2 Contact
+
+			p Enquire about freelance work or just ask a question.
+
+			include _form.htm
