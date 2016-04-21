@@ -1,7 +1,6 @@
 <?php
 
 require_once 'config.php';
-require_once 'lib/MailChimp.php';
 
 /**
  * Response to an Ajax request.
@@ -139,32 +138,6 @@ abstract class FormSubmission extends AjaxRequest {
 	
 	
 	/**
-	 * Whether to subscribe the user to a MailChimp list when the form is submitted.
-	 * If enabled, MailChimp configuration fields (prefixed with `$mc`) must be provided.
-	 */
-	protected $mailchimp = true;
-	
-	/**
-	 * MailChimp configuration fields.
-	 */
-	protected $mcListId;
-	protected $mcDoubleOptin = false;
-	protected $mcUpdateExisting = true;
-	protected $mcReplaceInterests = false;
-	protected $mcSendWelcome = true;
-	protected $mcCustomMergeVars = array();
-	
-	/**
-	 * Whether to send an email when the form is submitted.
-	 * If enabled, email configuration fields (prefixed with `$email`) must be provided
-	 */
-	protected $email = false;
-	protected $emailTo = ZENDESK_EMAIL;
-	protected $emailFrom;
-	protected $emailSubject;
-	
-	
-	/**
 	 * If you define the constructor of a sub-class, it must call this constructor:
 	 * `parent::__construct();`
 	 */
@@ -278,47 +251,6 @@ abstract class FormSubmission extends AjaxRequest {
 		}
 	}
 	
-	protected function mailchimp() {
-    	// Prepare MailChimp object
-    	$MailChimp = new MailChimp(MC_ACCOUNT_ID);
-		
-		// Get sanitized values and change keys to uppercase to match MailChimp merge vars
-		$mergeVars = array_change_key_case($this->values, CASE_UPPER);
-		
-		// Remove empty, optional merge vars values to prevent overwrite 
-		// (e.g. if a user registers to VET Commons as a User first and then as a Publisher or vice-versa)
-		$mergeVars = array_filter($mergeVars, function ($var) {
-			return (strlen($var) > 0);
-		});
-		
-		// Merge custom merge vars
-		$mergeVars = array_merge($mergeVars, $this->mcCustomMergeVars);
-		
-		// Call subscribe method
-		$result = $MailChimp->call('lists/subscribe', array(
-			'id' => $this->mcListId,
-			'email' => array('email' => $this->values['email']),
-			'merge_vars' => $mergeVars,
-			'double_optin' => $this->mcDoubleOptin,
-			'update_existing' => $this->mcUpdateExisting,
-			'replace_interests' => $this->mcReplaceInterests,
-			'send_welcome' => $this->mcSendWelcome
-		));
-		
-		// If in debug mode, add the result of the API call to the response data
-		if (AJAX_DEBUG) {
-			$this->response->data['mailchimp'] = $result;
-		}
-		
-		// Check if MailChimp returned an error
-		if (isset($result['error'])) {
-			$this->response->isError = true;
-			if (AJAX_DEBUG) {
-				$this->response->messages[] = 'Error while subscribing to MailChimp';
-			}
-		}
-	}
-	
 	protected function email() {
 		// Build the body of the email for the fields and values
 		$body = '';
@@ -373,9 +305,6 @@ class Enquiries extends FormSubmission {
 		'how' => array()
 	);
 	
-	// Enquiries list ID
-	protected $mcListId = ENQUIRIES_LIST_ID;
-	
 	// Send email
 	protected $email = true;
 	protected $emailFrom = ENQUIRIES_FROM;
@@ -395,140 +324,6 @@ class Enquiries extends FormSubmission {
 			'type' => 'text'
 		);
 	}
-	
-}
-
-
-/**
- * VET Commons User registration or Publisher enquiry.
- */
-class VETCommons extends FormSubmission {
-	
-    // Validation configuration
-    protected $config = array(
-		'email' => array('not-provided', 'invalid'),
-		'first' => array(),
-		'last' => array(),
-		'org' => array(),
-		'phone' => array()
-	);
-	
-	// VET Commons list ID
-	protected $mcListId = VETC_LIST_ID;
-	protected $mcSendWelcome = false;
-	
-	// Registration type (User or Publisher)
-	private $type;
-	
-	
-	public function __construct() {
-		parent::__construct();
-		
-		// Make sure that a registration type is provided
-		if (!isset($_POST['type'])) {
-			$this->response->isError = true;
-			$this->response->messages[] = 'Registration type not provided.';
-		} else {
-			// Get registration type
-			$this->type = filter_var($_POST['type'], FILTER_SANITIZE_STRING);
-
-			// Change validation configuration depending on registration type
-			switch ($this->type) {
-				case 'user':
-					// If user, add custom field 'moodleurl'
-					$this->fields['moodleurl'] = array(
-						'type' => 'url',
-						'not-provided' => 'Please enter your Moodle URL.',
-						'invalid' => 'Your Moodle URL doesn\'t seem to be valid.'
-					);
-
-					// ... and validate it
-					$this->config['moodleurl'] = array('not-provided', 'invalid');
-					
-					// Add custom merge var 'TOKENSET'
-					$this->mcCustomMergeVars['TOKENSET'] = 'No';
-					break;
-
-				case 'publisher':
-					// If publisher, valdiate Organisation field
-					$this->config['org'] = array('not-provided');
-					break;
-
-				default:
-					$this->response->isError = true;
-					$this->response->messages[] = 'Invalid registration type: ' . $this->type;
-			}
-			
-			// Add registration type grouping to custom merge vars
-			$this->mcCustomMergeVars['groupings'] = array(array(
-				'id' => 15021,
-				'groups' => array(ucfirst($this->type))
-			));
-		}
-	}
-	
-}
-
-
-/**
- * eLink subscription.
- */
-class eLink extends FormSubmission {
-	
-    // Validation configuration
-    protected $config = array(
-		'email' => array('not-provided', 'invalid')
-	);
-	
-	// eLink/Flex list ID
-	protected $mcListId = ELINK_LIST_ID;
-	
-	public function __construct() {
-		parent::__construct();
-		
-		// Enable double opt-in
-		$this->mcDoubleOptin = true;
-		
-		// Change error message when email is not valid
-		$this->fields['email']['invalid'] = "This address doesn't seem to be valid.";
-	}
-	
-}
-
-
-/**
- * Consultant enquiry.
- */
-class Consultant extends FormSubmission {
-	
-    // Validation configuration
-    protected $config = array(
-		'first' => array('not-provided'),
-		'last' => array('not-provided'),
-		'org' => array(),
-		'phone' => array('not-provided'),
-		'email' => array('not-provided', 'invalid')
-	);
-	
-	// Consultants list ID
-	protected $mcListId = CONSULTANTS_LIST_ID;
-	protected $mcSendWelcome = false;
-	
-	// Send email
-	protected $email = true;
-	protected $emailFrom = CONSULTANTS_FROM;
-	protected $emailSubject = CONSULTANTS_SUBJECT;
-    
-    
-	public function __construct() {
-		parent::__construct();
-		
-		// Add registration type grouping to merge vars
-		$this->mcCustomMergeVars['groupings'] = array(array(
-			'id' => 15029,
-			'groups' => array('Prospective')
-		));
-    }
 	
 }
 
