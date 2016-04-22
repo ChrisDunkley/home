@@ -6,7 +6,7 @@ css_pipeline = require 'css-pipeline'
 precss       = require 'precss'
 
 module.exports =
-  ignores: ['readme.md','**/layout.*', '**/_*', '.gitignore', '.gitattributes', 'ship.*conf', 'project.sublime-project']
+  ignores: ['readme.md','**/layout.*', '**/_*', '.gitignore', '.gitattributes', 'ship.*conf', 'project.sublime-project', 'project.sublime-workspace']
 
   extensions: [
     js_pipeline(files: 'assets/js/*.coffee'),

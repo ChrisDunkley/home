@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.php';
+require_once 'php/config.php';
 
 /**
  * Response to an Ajax request.

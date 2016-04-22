@@ -1,7 +1,11 @@
-#contact
-	.text_section
-		p.center <strong>Ready to get started?</strong>
-		p.center Complete the following form to get in touch.
+extends layout
+
+block variables
+	- var page_title = "Contact"
+
+block content
+
+	#contact
 
 		form.contact-form.ajax-form.grid
 			input(type="hidden" name="action" value="enquiries")
@@ -28,7 +32,7 @@
 					input#field(type="text" size="15" name="phone" required)
 				
 				.contact-errors.ajax-errors.hidden.unit.tab-1-2
-				p.contact-fail.ajax-fail.hidden.unit.tab-1-2 Something went wrong. If the problem persists, please <a href="tel:0396618700">give us a call</a> or send your request directly to <a href="mailto:enquiries@eworks.edu.au">enquiries@eworks.edu.au</a>.
+				p.contact-fail.ajax-fail.hidden.unit.tab-1-2 Something went wrong.
 			
 			fieldset.contact-fs.contact-fs--comments
 				.contact-field.clearfix
@@ -41,7 +45,7 @@
 			
 			.contact-submit.button.catchy
 				button.contact-submit-btn(type="submit") Submit
-				img.contact-spinner.ajax-spinner.hidden(src="/images/preloader--small--gray.gif" width="30" height="30" alt="")
+				img.contact-spinner.ajax-spinner.hidden(src="/img/preloader--small--gray.gif" width="30" height="30" alt="")
 		
 		#thank_you.ajax-success.hidden
 			p <strong>Thank you for contacting us!</strong>
@@ -49,5 +53,5 @@
 
 block footer-scripts
 	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js")
-	script(src="/js/ajax-loader.js?20150319")
-	script(src="/js/contact.js?20150429")
+	script(src="js/ajax-loader.js?20150319")
+	script(src="js/contact.js?20150429")

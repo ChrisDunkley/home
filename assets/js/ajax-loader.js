@@ -36,17 +36,6 @@
 		error: null, // if successful Ajax response describes an error
 		success: null, // if successful Ajax response does not describe an error
 		
-		// Array of parameters to send to Google Analytics with `ga('send', ...);`
-		// This can be used to send events and exceptions for instance.
-		gaBeforeAjax: null,
-		gaAjaxAlways: null,
-		gaAjaxDone: null,
-		gaAjaxFail: ['exception', {
-			exDescription: 'AjaxFail',
-			exFatal: true
-		}],
-		gaError: null,
-		gaSuccess: null
 	};
 	
 	function AjaxLoader(elem, options) {
@@ -188,16 +177,9 @@
 			this.$fail.removeClass("hidden").attr("tabindex", -1).focus();
 		},
 		
-		// Call a function hook with optional data, and send params to GA if provided
+		// Call a function hook with optional data
 		callHook: function (hookName, data) {
-			// If GA params provided, send them
-			var gaParams = this.settings['ga' + hookName.charAt(0).toUpperCase() + hookName.slice(1)];
-			if (gaParams) {
-				// Add 'send' at the start of the array and call the `ga` function
-				gaParams.unshift('send');
-				ga.apply(ga, gaParams);
-			}
-			
+						
 			// If function hook provided, call it
 			var hook = this.settings[hookName];
 			if (hook) {
