@@ -1,21 +1,20 @@
 extends layout
 
 block variables
-	- var page_title = "Home"
+	- var page_title = "Chris Dunkley Design"
 
 block header
-	script(src="js/wufoo.js")
 
 block content
 
 	header
-		img(src="img/logo.png")
+		img.logo(src="img/logo.png" width="136px" height="99px")
 	
-	#main
+	section#main
 		h1 CHRIS DUNKLEY
 
 		section#details
-			p.prominent Chris Dunkley is a <strong>multidisciplinary designer</strong> based in <strong>Melbourne, Australia</strong>.
+			p.big-text My name is Chris Dunkley. I'm a <strong>multidisciplinary designer</strong> based in <strong>Melbourne, Australia</strong>.
 
 			p.spacer I specialise in
 			ul.skills
@@ -27,16 +26,20 @@ block content
 			h2 Find me elsewhere
 
 			ul.links
-				li
-					a.icon-linkedin(href="https://www.linkedin.com/in/chrisjdunkley" alt="Linkedin") Linkedin
-				li
-					a.icon-twitter(href="http://www.twitter.com/ChrisDunkley" alt="Twitter") Twitter
-				li
-					a.icon-twitter(href="http://www.facebook.com/" alt="Twitter") Facebook
+				li: a.icon-linkedin(href="https://www.linkedin.com/in/chrisjdunkley" alt="Linkedin") Linkedin
+				li: a.icon-twitter(href="http://www.twitter.com/ChrisDunkley" alt="Twitter") Twitter
+				li: a.icon-behance(href="http://www.behance.net/ChrisDunkley" alt="Behance") Behance
 		
 		section#contact
-			h2 Contact
+			h2 Get in touch
 
-			p Enquire about freelance work or just ask a question.
+			.contact 
+				p The best way to contact me is via
 
-			include _form.htm
+				ul.contact-details
+					li: a(href="mailto:contact@chrisdunkley.net") Email
+					li: p or
+					li: a(href="https://www.linkedin.com/in/chrisjdunkley") Linkedin
+
+	footer
+		p.small-text Website created by Chris Dunkley

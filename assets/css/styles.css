@@ -1,20 +1,9 @@
 @import "assets/css/settings";
 
-
-$text-main: #5E5E5E;
-$text-header: #8C8C8C;
-
-$font-header: 'Comfortaa', cursive;
-
-$bg-primary: #DEDEDB;
-$bg-secondary: #fff;
-$bg-header: #F4B448;
-
-
 body {	
 	background-color: $bg-primary;
 	color: $text-main;
-	font-family: Arial, sans-serif;
+	font-family: "Helvetica Neue", Arial, sans-serif;
 	padding: 0;
 	margin: 0;
 }
@@ -22,6 +11,17 @@ body {
 header {
 	background-color: $bg-header;
 	min-height: 10rem
+}
+
+footer {
+	text-align: center;
+}
+
+.logo {
+	margin: 0 auto;
+	display: block;
+	top: 72px;
+	position: relative;
 }
 
 h1 {
@@ -38,25 +38,17 @@ h2 {
 	font-size: 120%;
 }
 
-p {
-	font-family: "Helvetica Neue", Arial, sans-serif;
-}
 
-#main {
+section {
+	margin: 0 auto;
+	max-width: 800px;
 	text-align: center;
 }
 
-section {
+#details,
+#elsewhere,
+#contact {
 	padding: 3rem 1rem;
-	margin: 0 auto;
-	max-width: 800px;
-}
-
-section#details {
-	
-}
-
-section#contact {
 }
 
 .skills {
@@ -75,6 +67,7 @@ section#contact {
 		&:last-child {
 			margin-right: 0;
 		}
+
 	}
 }
 
@@ -86,30 +79,71 @@ section#contact {
 		display: inline-block;
 		height: 80px;
 		width: 80px;
-		border-radius: 2px;
-		background-color: white;
 		margin-right: 1px;
 
 
 		&:last-child {
 			margin-right: 0;
 		}
+	}
 
-		a {
-			display: inline-block;
-			height: 100%;
-			width: 100%;
-			overflow: hidden;
-			text-indent: -9999px;
+	a {
+		display: inline-block;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		text-indent: -9999px;
+		border-radius: 2px;
+		background-position: left top;
+		background-size: 80px 80px;
+		background-repeat: no-repeat;
+		background-color: $bg-btn-normal;
+
+		&:hover {
+			background-color: $bg-btn-hover;
 		}
 	}
 }
 
+.contact-details {
+	padding: 0;
+	text-align: center;
 
+	li {
+		display: inline-block;
+		text-align: center;
+		margin: 1px 1px 0px 0px;
 
-#form1 h2 {
-	color: #ff0000;
+			p, a {
+				
+				padding: 1rem 2rem;
+				border-radius: 2px;
+				font-size: 105%;
+				margin: 0;
+			}
+
+			a {
+				background-color: $bg-secondary;
+				text-decoration: none;
+				color: $text-main;
+
+				&:hover {
+					background-color: $bg-btn-hover;
+
+					text-decoration: underline;
+				}
+			}
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
 }
+
+.icon-linkedin { background-image: url("../img/icon-linkedin.png"); }
+.icon-twitter { background-image: url("../img/icon-twitter.png"); }
+.icon-behance { background-image: url("../img/icon-behance.png"); }
+
 
 /* Helpers */
 
@@ -117,207 +151,18 @@ section#contact {
 	display: none;
 }
 
-.prominent {
+.big-text {
 	font-size: 120%;
+}
+
+.small-text {
+	font-size: 80%;
 }
 
 .spacer {
 	padding-top: 3rem;
 }
 
-
-
-
-
-
-
-
-
-
 .hidden {
 	display: none;
-}
-
-#contact {
-	margin-top: 3rem;
-}
-
-#contact > .text_section {
-	overflow: visible;
-}
-
-.contact-form {
-	padding-top: 15px;
-	margin-bottom: 40px;
-	position: relative;
-}
-
-.contact-fs {
-	border: 0 none;
-	margin: 0;
-	padding: 0;
-}
-
-.contact-fs--details {
-	border-bottom: 1px dashed #aaa;
-	padding-bottom: 3.5rem;
-	margin-bottom: 3rem;
-}
-
-/* Fields */
-
-.contact-field {
-	position: relative;
-	margin: 0 0 1px;
-	padding-bottom: 1em;
-
-
-	> label,
-	> input {
-		display: block;
-		width: 100%;
-		box-sizing: border-box;
-	}
-
-	> label {
-		font-size: 90%;
-		line-height: 3rem;
-		background-color: #4c8db3;
-		color: #fff;
-		padding: 0 1rem;
-
-	}
-
-	> input {
-		font-size: 120%;
-		line-height: 3rem;
-		padding: 0 1rem;
-	}
-
-	> .req {
-		position: absolute;
-		right: .5em;
-		bottom: 0;
-		line-height: 3rem;
-		font-size: 120%;
-	}
-
-	> .req + input {
-		padding-right: 2em;
-	}
-}
-
-.contact-fs--comments .contact-field:first-child > label {
-	width: 100%;
-}
-
-.contact-field--how > label {
-	font-weight: normal;
-}
-
-.contact-textarea {
-	padding: 1rem;
-}
-
-
-/* Move contact info labels and fields on the same lines */
-
-@media (min-width: 50em) {
-
-	.contact-field {
-		padding-bottom: 0;
-	}
-	
-	.contact-field > label,
-	.contact-field > input {
-		float: left;
-	}
-
-	.contact-field > label {
-		padding-right: 1em;
-		width: 20%;
-	}
-
-	.contact-field--how > label {
-		text-align: left;
-		width: auto;
-	}
-
-	.contact-field > input {
-		width: 80%;
-	}
-
-	.contact-field--how > input {
-		width: auto;
-	}
-
-}
-
-/* Error messages */
-
-.contact-errors > p,
-.contact-fail {
-	font-size: 90%;
-	color: #c00;
-	outline: none;
-}
-
-.contact-errors > p {
-	margin-bottom: 0;
-}
-
-.contact-fail {
-	max-width: 25em;
-}
-
-.contact-fail a {
-	color: inherit;
-}
-
-@media (min-width: 35em) {
-	.contact-errors,
-	.contact-fail {
-		margin-bottom: 1.5em;
-		padding-top: .5em;
-		padding-left: 1.75em;
-	}
-}
-
-@media (min-width: 50em) {
-	.contact-errors,
-	.contact-fail {
-		padding-top: 0;
-	}
-}
-
-/* Submit button and spinner */
-
-.contact-submit {
-	font-size: 110%;
-	margin: 35px 0 15px 0;
-	text-align: right;
-	position: relative;
-}
-
-.contact-submit-btn {
-	font-size: inherit!important;
-	padding: 0!important;
-	line-height: 2.5!important;
-	width: 16em!important;
-	border-left: 1px solid #ebebeb;
-}
-
-.contact-spinner {
-	display: inline-block;
-	position: absolute;
-	top: 3.3em;
-	right: 8em;
-	z-index: -10;
-	margin-right: -15px;
-	-webkit-transition: top 0.3s ease 0s;
-	transition: top 0.3s ease 0s;
-}
-
-.contact-spinner.hidden {
-	top: 5px;
 }
