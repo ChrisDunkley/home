@@ -1,0 +1,24 @@
+mixin album(img, artist, title, description)
+	.album
+		img.album-img(src="images/" + img)
+		.album-info
+			.album-artist #{artist}
+			.album-title #{title}
+			if description
+				p.album-description #{description}
+
+
+h2 August 2018
+
++album(
+'blamo.jpg',
+'Sock and the Puppets',
+'Get worn',
+'This is a good album. If set to 0, the extra space around content isnt factored in. If set to auto, the extra space is distributed based on its flex-grow value. See this graphic.'
+)
+
++album(
+'blamo.jpg',
+'Sock and the Puppets',
+'Get worn'
+)

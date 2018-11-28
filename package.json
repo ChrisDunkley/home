@@ -1,17 +1,23 @@
 {
-  "name": "home",
-  "description": "webiste for chrisdunkley.net, built with roots",
-  "dependencies": {
-    "autoprefixer": "^6.3.3",
-    "axis": "0.5.x",
-    "coffee-script": "^1.0.0",
-    "css-pipeline": "0.3.x",
-    "jade": "^1.0.0",
-    "js-pipeline": "0.2.x",
-    "jstransformer-marked": "^1.0.0",
-    "marked": "0.3.x",
-    "postcss": "^5.0.18",
-    "precss": "^1.4.0",
-    "rupture": "0.6.x"
+  "name": "website",
+  "version": "0.0.0",
+  "description": "Website with gulp functionality",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Dunkley",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-changed": "^3.2.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-pug": "^3.3.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-watch": "^4.3.11"
   }
 }

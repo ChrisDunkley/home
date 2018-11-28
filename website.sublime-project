@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*.zip",
+				"README.md",
+				"*.sublime-project"
+			],
+			"folder_exclude_patterns":
+			[
+				"live",
+				"node_modules"
+			],
+			"path": "src/"
+		}
+	],
+	"settings":
+	{
+		"tab_size": 4
+	}
+}

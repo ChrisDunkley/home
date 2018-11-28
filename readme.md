@@ -1,15 +1,31 @@
-# home
+# README #
 
-website for chrisdunkley.net, built with [roots](http://roots.cx)
+Development folder for main pages of the eWorks website.
 
-### Setup
+Note: This repository does not contain the entire eWorks website.
 
-- make sure [node.js](http://nodejs.org) and [roots](http://roots.cx) are installed
-- clone this repo down and `cd` into the folder
-- run `npm install`
-- run `roots watch`
+### What is this repository for? ###
 
-### Deploying
+* Quick summary
+* Version
+* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-- If you just want to compile the production build, run `roots compile -e production` and it will build to public.
-- To deploy your site with a single command, run `roots deploy -to XXX` with `XXX` being whichever [ship](https://github.com/carrot/ship#usage) deployer you want to use.
+### How do I get set up? ###
+
+* Summary of set up
+* Configuration
+* Dependencies
+* Database configuration
+* How to run tests
+* Deployment instructions
+
+### Contribution guidelines ###
+
+* Writing tests
+* Code review
+* Other guidelines
+
+### Who do I talk to? ###
+
+* Repo owner or admin
+* Other community or team contact
