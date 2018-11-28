@@ -1,0 +1,70 @@
+body {
+  background-color: #ccc;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0; }
+
+h2 {
+  text-align: center;
+  color: #595959;
+  font-weight: normal;
+  margin: 2em;
+  width: 100%; }
+
+.album-library {
+  display: flex;
+  flex-wrap: wrap; }
+
+.album {
+  background-color: #fff;
+  flex: 1 1 100%;
+  padding: 0 1em;
+  box-sizing: border-box;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.album-img {
+  flex: 1 0 auto;
+  width: 100%; }
+
+.album-info {
+  margin-top: 1em;
+  padding: 1em;
+  width: 100%;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.album-artist {
+  font-weight: bold;
+  font-size: 120%;
+  margin: 0.5em 0; }
+
+.album-title {
+  font-size: 120%;
+  margin: 0.5em 0; }
+
+@media (min-width: 600px) {
+  .album {
+    flex-direction: row;
+    align-items: stretch; }
+  .album-img {
+    flex: 1 1 20%;
+    margin: 0; }
+  .album-info {
+    flex: 0 1 60%;
+    width: auto;
+    margin-left: 1em;
+    margin-top: 0; } }
+
+@media (min-width: 1280px) {
+  .album {
+    flex: 0 1 50%; }
+  .album-img {
+    flex: 0 1 10%; }
+  .album-info {
+    flex: 0 1 90%; } }

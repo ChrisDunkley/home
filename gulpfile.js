@@ -12,21 +12,21 @@ var reload     	 	= bs.reload;
 var path 			= {
 						SRCPUG: 'src/**/*.pug',
 						_SRCPUG: '!src/**/_*.pug',
-						DISTPUG: 'dist/',
+						DISTPUG: 'docs/',
 
 						SRCCSS: 'src/css/**/*.scss',
 						_SRCCSS: '!src/css/**/_*.scss',
-						DISTCSS: 'dist/css/',
+						DISTCSS: 'docs/css/',
 
 						SRCIMG: 'src/images/**/*',
-						DISTIMG: 'dist/images/'
+						DISTIMG: 'docs/images/'
 					};
 
 //Browser Sync
 gulp.task('browser-sync', function() {
 	bs.init({
 		server: {
-			baseDir: "dist/"
+			baseDir: "docs/"
 		}
 	});
 });
